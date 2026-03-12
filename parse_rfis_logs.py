@@ -15,7 +15,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 from typing import Any, Optional
 
-DEFAULT_FOLDER = Path.home() / "Downloads" / "sangram_bvid_migration"
+DEFAULT_FOLDER = Path.home() / "Downloads" / "sangram_bvid_migration" / "232"
 
 
 # ---------------------------------------------------------------------------
@@ -501,7 +501,8 @@ Examples:
             file_results: list = []
             process_file(path, file_results)
             if file_results:
-                out_path = path.parent / f"{path.stem}_cleaned.json"
+                out_path = path.parent / "cleaned_folder" / f"{path.stem}_cleaned.json"
+                out_path.parent.mkdir(parents=True, exist_ok=True)
                 out_path.write_text(
                     json.dumps(
                         file_results[0] if len(file_results) == 1 else file_results,
